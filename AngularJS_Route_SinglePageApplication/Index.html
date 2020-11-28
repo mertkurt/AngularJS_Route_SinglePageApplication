@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Anasayfa</title>
+	<meta charset="utf-8" />
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/scrolling-nav.css" rel="stylesheet" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="/">Anasayfa</a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>
+                        <a class="page-scroll" href="/hakkimizda">Hakkımızda</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/urunler">Ürünler</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/iletisim">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <ng-view>
+
+    </ng-view>
+
+
+
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery.easing.min.js"></script>
+
+</body>
+</html>
+
+<script>
+    var app = angular.module("myApp", ['ngRoute']);
+    app.config(RouteConfig);
+
+    RouteConfig.$inject = ["$routeProvider", "$locationProvider"];
+
+    function RouteConfig($routeProvider, $locationProvider, $location) {
+        $routeProvider
+            .when("/", {
+                templateUrl: "anasayfa.html"
+            })
+            .when("/hakkimizda", {
+                templateUrl: "hakkimizda.html"
+            })
+            .when("/urunler", {
+                templateUrl: "urunler.html"
+            })
+            .when("/iletisim", {
+                templateUrl: "iletisim.html"
+            })
+            .otherwise({
+                redirectTo:"/"
+            })
+
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }
+</script>
